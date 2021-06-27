@@ -7,7 +7,8 @@ const parsePath = (path, variables) => {
     return parsed;
   }
   Object.keys(variables).forEach((key) => {
-    parsed = parsed.replace(/{{(.)+}}/, variables[key]);
+    const regexp = new RegExp(`{{${key}}}`, 'g');
+    parsed = parsed.replace(regexp, variables[key]);
   });
 
   return parsed;
