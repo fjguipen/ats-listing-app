@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": ["import"],
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "rules": {
+    "quotes": ["warn", "single"],
+    "spaced-comment": ["error", "always", {
+        "block": {
+            "balanced": true
+        }
+    }],
+    "import/no-extraneous-dependencies": "error"
+  }
+}
