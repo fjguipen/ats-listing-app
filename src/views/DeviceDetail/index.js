@@ -1,12 +1,22 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '../../state/hooks';
+import { GET_PRODUCT } from '../../state/product/rest/queries';
 
 export const DeviceDetail = (props) => {
+  const { deviceId } = useParams();
+  const { data, loading, errors } = useQuery(GET_PRODUCT, {
+    variables: {
+      id: deviceId
+    }
+  });
+
   return (
     <>
-      <div>Device Detail</div>
+      <Link to="/devices">Back</Link>
       <br />
-      <Link to="/devices">Link</Link>
+      <br />
+      {data?.product && <div className="device">{data.product.model}</div>}
     </>
   );
 };

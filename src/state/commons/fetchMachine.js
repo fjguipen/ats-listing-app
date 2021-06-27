@@ -1,4 +1,5 @@
 import { createMachine, assign } from 'xstate';
+import { handleFetch } from './handleFetch';
 
 export const fetchMachine = createMachine(
   {
@@ -13,9 +14,7 @@ export const fetchMachine = createMachine(
           src: 'fetchData',
           onDone: {
             target: 'success',
-            actions: assign({
-              data: (_, event) => event.data
-            })
+            actions: 'onSuccessFetch'
           },
           onError: {
             target: 'failure',
@@ -38,11 +37,11 @@ export const fetchMachine = createMachine(
   // override on implementation
   {
     actions: {
-      onSucceeded: [],
-      onError: []
+      onSucceeded: () => {},
+      onError: () => {}
     },
     services: {
-      fetchData: []
+      fetchData: (ctx, e) => handleFetch(e.query, e.variables)
     }
   }
 );

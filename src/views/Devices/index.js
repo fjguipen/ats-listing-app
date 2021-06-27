@@ -14,7 +14,7 @@ export const Devices = (props) => {
     <>
       <div className="search">Buscar</div>
       <ul className="list">
-        {data?.map((item) => (
+        {data?.products?.map((item) => (
           <Link key={item.id} to={`/devices/${item.id}`}>
             <li>{item.model}</li>
           </Link>

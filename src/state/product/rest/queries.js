@@ -1,4 +1,4 @@
-import { productsMachine } from '../store';
+import { productsMachine, productMachine } from '../store';
 
 export const GET_PRODUCTS = {
   path: '/product',
@@ -8,7 +8,8 @@ export const GET_PRODUCTS = {
 };
 
 export const GET_PRODUCT = {
-  path: '/product/:id',
+  path: '/product/{{id}}',
   method: 'GET',
-  expiration: 1 * 60 * 60
+  expiration: 1 * 60 * 60,
+  machine: productMachine
 };
