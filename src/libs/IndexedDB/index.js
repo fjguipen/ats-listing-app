@@ -96,10 +96,8 @@ class IndexedDBC {
       if (secondsToExpire) {
         data.expires = new Date().getTime() + secondsToExpire * 1000;
       }
-      console.log(data);
       const request = store.put(data);
       request.onsuccess = (e) => {
-        console.log('Storing data in IDB');
         resolve(data);
       };
       request.onerror = (e) => {
