@@ -1,21 +1,40 @@
-import { DeviceDetail } from './DeviceDetail';
-import { Devices } from './Devices';
+import { ProductDetail } from './ProductDetail';
+import { Products } from './Products';
 
-export const routes = [
+export const ROUTES = {
+  PRODUCTS: 'products',
+  PRODUCT_DETAIL: 'product-detail'
+};
+
+export const routesConfig = [
   {
-    id: 'devices',
-    path: '/devices',
-    component: Devices,
+    id: ROUTES.PRODUCTS,
+    path: '/products',
+    component: Products,
     metaTags: {
       title: 'metas.devices.title'
     }
   },
   {
-    id: 'device-detail',
-    path: '/devices/:deviceId',
-    component: DeviceDetail,
+    id: ROUTES.PRODUCT_DETAIL,
+    path: '/products/:deviceId',
+    component: ProductDetail,
     metaTags: {
       title: 'metas.device.title'
     }
   }
 ];
+
+export const getPath = (page, args = {}) => {
+  const target = routesConfig.find((r) => r.id === page);
+  if (!target) {
+    throw new Error('Invalid route');
+  }
+  let path = target.path;
+
+  for (let arg in args) {
+    path = path.replace(`:${arg}`, args[arg]);
+  }
+
+  return path;
+};

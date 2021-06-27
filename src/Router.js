@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { LayoutWithSuspense } from './commons/components/Layout';
-import { routes } from './views/routes';
+import { getPath, routesConfig, ROUTES } from './views/routes';
 
 export const Router = () => {
   return (
     <Switch>
-      {routes.map((route) => (
+      {routesConfig.map((route) => (
         <Route key={route.id} exact path={route.path}>
           <LayoutWithSuspense
             id={route.id}
@@ -16,7 +16,7 @@ export const Router = () => {
         </Route>
       ))}
       <Route path="/" exact>
-        <Redirect to="devices" />
+        <Redirect to={getPath(ROUTES.PRODUCTS)} />
       </Route>
       <Route
         path="*"
