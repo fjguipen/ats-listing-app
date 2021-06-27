@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { ProductMiniature } from '../../commons/components/ProductMiniature';
 import { useQuery } from '../../state/hooks';
 import { GET_PRODUCTS } from '../../state/product/rest/queries';
-import { getPath, ROUTES } from '../routes';
 
 export const Products = (props) => {
   const { data, loading, errors } = useQuery(GET_PRODUCTS);
+
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   if (errors) {
     return <>Error</>;
@@ -14,15 +17,12 @@ export const Products = (props) => {
   return (
     <>
       <div className="search">Buscar</div>
-      <ul className="list">
-        {data?.products?.map((item) => (
-          <Link
-            key={item.id}
-            to={getPath(ROUTES.PRODUCT_DETAIL, { deviceId: item.id })}
-          >
-            <li>{item.model}</li>
-          </Link>
-        ))}
+      <ul className="products-list">
+        {data?.products
+          ?.filter((p) => p.price)
+          .map((item) => (
+            <ProductMiniature key={item.id} product={item} />
+          ))}
       </ul>
     </>
   );

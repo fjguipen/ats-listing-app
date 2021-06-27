@@ -9,3 +9,45 @@ ul,
 ol {
   list-style: none;
 }
+
+a,
+button {
+  text-decoration: none;
+  color: inherit;
+}
+
+a {
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+p {
+  line-height: 22px;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+textarea,
+input,
+button,
+select {
+  font-family: $font;
+  font-size: inherit;
+}

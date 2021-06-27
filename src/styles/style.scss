@@ -1,14 +1,22 @@
 @import 'partials/vars';
 @import 'partials/colors';
 @import 'partials/presets';
-@import 'partials/config';
 
 @import 'utils/color';
 @import 'utils/mixins';
 
+@import 'animations/shine';
+
 @import 'componets/workspace';
+@import 'componets/products';
+
 
 
 body {
-  font-family: $font
+  font-family: $font;
+  color: color(text)
+}
+
+.hidden {
+  visibility: hidden;
 }

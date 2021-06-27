@@ -12,6 +12,10 @@ export const ProductDetail = (props) => {
     }
   });
 
+  React.useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <>
       <Link to={getPath(ROUTES.PRODUCTS)}>Back</Link>

@@ -4,3 +4,17 @@
   display: flex;
   flex-flow:row wrap;
 }
+
+@mixin transition ($property, $duration, $curve:linear ,$delay: 0s) {
+  -webkit-transition: $property $duration $curve $delay;
+  -moz-transition: $property $duration $curve $delay;
+  -ms-transition: $property $duration $curve $delay;
+  transition: $property $duration $curve $delay;
+}
+
+@mixin transform($property){
+  -webkit-transform:$property;
+  -moz-transform:$property;
+  -ms-transform:$property;
+  transform:$property;
+}
