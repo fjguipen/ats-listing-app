@@ -68,18 +68,21 @@ class IndexedDBC {
       const request = store.get(key);
       request.onsuccess = (e) => {
         const data = e.target.result;
+
         if (!data) {
-          resolve(null);
+          return resolve(null);
         }
+
         if (data.expires <= new Date().getTime()) {
           this.remove(key).catch((err) => {
             // handle
-            console.log('Could note remove expired entry');
           });
-          resolve(null);
+          return resolve(null);
         }
+
         resolve(e.target.result);
       };
+
       request.onerror = (e) => {
         // Handle
         resolve(null);
@@ -93,14 +96,14 @@ class IndexedDBC {
       if (secondsToExpire) {
         data.expires = new Date().getTime() + secondsToExpire * 1000;
       }
+      console.log(data);
       const request = store.put(data);
       request.onsuccess = (e) => {
-        console.log('PUT');
+        console.log('Storing data in IDB');
         resolve(data);
       };
       request.onerror = (e) => {
         // Handle
-        console.log('EXISTS');
         resolve(null);
       };
     });
@@ -113,7 +116,7 @@ class IndexedDBC {
       request.onsuccess = (e) => {
         const objectStore = e.target.result;
         if (!objectStore) {
-          reject(null);
+          return reject(null);
         }
         const requestUpdate = objectStore.put(data);
         requestUpdate.onerror = (e) => {
