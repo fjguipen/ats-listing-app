@@ -1,3 +1,14 @@
+@import 'partials/vars';
+@import 'partials/colors';
 @import 'partials/presets';
 @import 'partials/config';
 
+@import 'utils/color';
+@import 'utils/mixins';
+
+@import 'componets/workspace';
+
+
+body {
+  font-family: $font
+}

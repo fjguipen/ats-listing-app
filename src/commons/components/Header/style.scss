@@ -1,0 +1,8 @@
+.workspace__header{
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  &__cart {
+    margin-left: auto;
+  }
+}

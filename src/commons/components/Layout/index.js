@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { withSuspense } from '../../hoc/withSuspense';
 import { Helmet } from 'react-helmet';
@@ -11,7 +10,9 @@ export const Layout = ({ component, metaTags, ...props }) => {
   return (
     <>
       <Helmet>{metaTags?.title && <title>{t(metaTags.title)}</title>}</Helmet>
-      <Component />
+      <div className="workspace__layout">
+        <Component />
+      </div>
     </>
   );
 };

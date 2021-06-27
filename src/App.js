@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { CartProvider } from './commons/components/Cart/CartProvider';
+import { Header } from './commons/components/Header';
 import { Router } from './Router';
-// i18n translations might still be loaded by the http backend
-// use react's Suspense
+
 export default function App() {
   return (
     <BrowserRouter>
-      <Router />
+      <CartProvider>
+        <div className="workspace">
+          <Header />
+          <Router />
+        </div>
+      </CartProvider>
     </BrowserRouter>
   );
 }
