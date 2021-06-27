@@ -6,17 +6,20 @@ export const cacheResponse = async (key, data, expiration) => {
   await IndexedDB.set(
     IDBStores.REQUESTS,
     {
-      data,
-      idbKey: key
+      idbKey: key,
+      data
     },
     expiration
   );
 };
 
-export const handleFetch = async (
-  { path, method, body, headers = {}, expiration },
-  cb
-) => {
+export const handleFetch = async ({
+  path,
+  method,
+  body,
+  headers = {},
+  expiration
+}) => {
   const options = {
     headers: new Headers({
       ...headers
@@ -28,14 +31,16 @@ export const handleFetch = async (
   const endpointURL = API + path;
   const cached = await IndexedDB.get(IDBStores.REQUESTS, endpointURL);
   if (cached) {
-    return cb(JSON.parse(cached.data));
+    return JSON.parse(cached.data);
   }
 
   const response = await fetch(endpointURL, options);
   if (response?.status === 200) {
     const data = await response.json();
-    cacheResponse(endpointURL, JSON.stringify(data), expiration);
-    return cb(data);
+    if (expiration) {
+      cacheResponse(endpointURL, JSON.stringify(data), expiration);
+    }
+    return data;
   } else {
     throw new Error('Request failed');
   }
