@@ -3,16 +3,23 @@ import { useTranslation } from 'react-i18next';
 import { withSuspense } from '../../hoc/withSuspense';
 import { Helmet } from 'react-helmet';
 
-export const Layout = ({ component, metaTags, ...props }) => {
+export const Layout = ({ id, component, metaTags }) => {
   const { t } = useTranslation();
   const Component = component;
+
+  // Reset scroll on route change
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0
+    });
+  });
 
   return (
     <>
       <Helmet>{metaTags?.title && <title>{t(metaTags.title)}</title>}</Helmet>
-      <div className="workspace__layout">
+      <main id={id} className="workspace__layout">
         <Component />
-      </div>
+      </main>
     </>
   );
 };

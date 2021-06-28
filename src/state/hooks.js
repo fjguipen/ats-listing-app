@@ -16,18 +16,8 @@ const parsePath = (path, variables) => {
 
 export const useQuery = (query, { variables } = {}) => {
   const [state, send] = useMachine(query.machine);
-  const [data, setData] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [errors, setErrors] = React.useState(null);
-
-  React.useEffect(() => {
-    setLoading(state.matches('loading'));
-    if (state.matches('success')) {
-      setData(state.context);
-    } else if (state.matches('failure')) {
-      setErrors([state.context.error]);
-    }
-  }, [state]);
 
   React.useEffect(() => {
     send('FETCH', {
@@ -38,7 +28,14 @@ export const useQuery = (query, { variables } = {}) => {
     });
   }, []);
 
-  return { data, loading, errors };
+  React.useEffect(() => {
+    setLoading(state.matches('loading'));
+    if (state.matches('failure')) {
+      setErrors([state.context.error]);
+    }
+  }, [state]);
+
+  return { data: state.context, loading, errors };
 };
 
 export const useMutation = (query) => {
