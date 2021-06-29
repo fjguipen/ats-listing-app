@@ -1,0 +1,52 @@
+.product-detail {
+  .go-back {
+    margin-top: 1.5rem;
+
+  }
+   .wrapper{
+    @include d-flex();
+    & > * {
+     width: 100%;
+     @media only screen and (min-width: 768px) {
+       width: 50%;   
+     }
+    }
+    &__image {
+      padding: 1.25rem;
+      
+      
+      img {
+        max-width: 260px;
+        display: block;
+        margin: auto;
+      }
+    }
+    &__content {
+      &__description{
+        .title{
+          margin-bottom: 1rem;
+        }
+        .bullet {
+          margin-bottom: 0.35rem;
+        }
+      }
+      &__actions {
+        .select {
+          width: 100%;
+          margin-bottom: 0.5rem;
+          max-width: 200px;
+        }
+        .buy {
+          .price {
+            color: green;
+            font-weight: bold;
+            font-size: 1.2rem;
+          }
+          .button {
+            margin-left: auto;
+          }
+        }
+      }
+    }
+  }
+}
