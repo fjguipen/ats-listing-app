@@ -1,16 +1,21 @@
 import React from 'react';
 import { LocalStorage } from '../../../libs/LocalStorage';
-import { CartContext } from './context';
+import { CartContext, DEFAULT_CONTEXT } from './state/context';
+import { reducer } from './state/reducer';
+
+const initialCartState = () => {
+  return LocalStorage.get('cart') || DEFAULT_CONTEXT;
+};
 
 export const CartProvider = (props) => {
-  const [count, setCount] = React.useState(() => LocalStorage.get('cart') || 0);
+  const [state, dispatch] = React.useReducer(reducer, initialCartState());
 
   React.useEffect(() => {
-    LocalStorage.set('cart', count);
-  }, [count]);
+    LocalStorage.set('cart', state);
+  }, [state]);
 
   return (
-    <CartContext.Provider value={{ count, setCount }}>
+    <CartContext.Provider value={{ state, dispatch }}>
       {props.children}
     </CartContext.Provider>
   );

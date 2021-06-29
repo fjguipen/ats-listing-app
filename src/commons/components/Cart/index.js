@@ -1,14 +1,18 @@
 import * as React from 'react';
-import './style.scss';
-import { CartContext } from './context';
+import { CartContext } from './state/context';
 
 export const Cart = ({ className }) => {
-  const { count } = React.useContext(CartContext);
+  const { state } = React.useContext(CartContext);
 
   return (
-    <div className={'cart-display ' + (className || '')}>
-      <span className="material-icons">shopping_cart</span>
-      {count}
+    <div className={'cart ' + (className || '')}>
+      <span
+        onClick={() => setShowResume((prev) => !prev)}
+        className="material-icons"
+      >
+        shopping_cart
+      </span>
+      {state.total}
     </div>
   );
 };
