@@ -39,13 +39,26 @@ export const useQuery = (query, { variables } = {}) => {
 };
 
 export const useMutation = (query) => {
-  const [state, send] = useMachine(query.machine);
+  const [state, send, service] = useMachine(query.machine);
   const [data, setData] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
   const [errors, setErrors] = React.useState(null);
 
-  const handleMutation = ({ variables }) => {
+  const handleMutation = async ({ variables }) => {
     send('FETCH', { query, variables });
+    let listenerHandler;
+    const data = await new Promise((resolve, reject) => {
+      listenerHandler = ({ context, event }) => {
+        if (event.type === 'done.invoke.mutation') {
+          resolve(context.data);
+        } else if (event.type === 'error.platform.mutation') {
+          reject(event.data);
+        }
+      };
+      service.onTransition(listenerHandler);
+    });
+    service.off(listenerHandler);
+    return data;
   };
 
   React.useEffect(() => {

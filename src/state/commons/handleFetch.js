@@ -13,19 +13,17 @@ export const cacheResponse = async (key, data, expiration) => {
   );
 };
 
-export const handleFetch = async ({
-  path,
-  method,
-  body,
-  headers = {},
-  expiration
-}) => {
+export const handleFetch = async (
+  { path, method, headers = {}, expiration },
+  variables
+) => {
   const options = {
     headers: new Headers({
+      'Content-Type': 'application/json',
       ...headers
     }),
     method,
-    body: (body && JSON.stringify(body)) || undefined
+    body: (variables && JSON.stringify(variables)) || undefined
   };
 
   const endpointURL = API + path;
