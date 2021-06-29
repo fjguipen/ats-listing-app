@@ -1,0 +1,14 @@
+.bread-crumb{
+  height: 2rem;
+  .separator {
+    margin: 0 4px
+  }
+  & > *:not(.separator) {
+    text-decoration: underline;
+    &:nth-last-child(1){
+      text-decoration: none;
+      font-weight: bold;
+   
+    }
+  }
+}

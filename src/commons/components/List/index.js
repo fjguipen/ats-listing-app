@@ -65,6 +65,7 @@ export const List = ({ filter, items, keyName, children, pageSize }) => {
             const nextPage = i + 1;
             return (
               <div
+                key={i}
                 className={
                   'page ' + (paginator.page === nextPage ? 'active' : '')
                 }

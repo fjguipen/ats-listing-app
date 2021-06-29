@@ -15,7 +15,7 @@ export class LocalStorage {
     try {
       let store = window.localStorage.getItem(key);
       store = JSON.parse(store);
-      if (store.expires <= new Date().getTime()) {
+      if (store.expires && store.expires <= new Date().getTime()) {
         LocalStorage.remove(key);
         return null;
       }

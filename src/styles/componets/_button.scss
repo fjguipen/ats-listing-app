@@ -1,0 +1,19 @@
+button {
+  padding: 8px;
+  border-bottom: 1px solid rgba(26, 11, 5, 0.25);
+  box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.15);
+  &:hover{
+    cursor: pointer;
+  }
+  &.primary{
+    background-color: color(primary);
+    color: color(white);
+  }
+  &.secondary{
+    background-color: color(secondary);
+    color: color(white);
+  }
+  &[disabled=""]{
+    opacity: 0.35; 
+  }
+}

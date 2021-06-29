@@ -8,9 +8,11 @@
 @import 'animations/shine';
 
 @import 'componets/workspace';
-@import 'componets/products/view';
+@import 'componets/button';
+@import 'componets/cart';
 @import 'componets/products/list';
 @import 'componets/products/search';
+@import 'componets/products/detail';
 
 
 
@@ -21,4 +23,10 @@ body {
 
 .hidden {
   visibility: hidden;
+}
+
+.row {
+  @include d-flex();
+  flex-flow: row;
+  align-items: center;
 }

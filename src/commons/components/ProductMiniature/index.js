@@ -16,7 +16,7 @@ export const ProductMiniature = ({ item }) => {
           <h2 className="label">
             {brand} - {model}
           </h2>
-          <span className="price">{price}$</span>
+          <span className="price">$ {price}</span>
         </div>
       </Link>
     </article>

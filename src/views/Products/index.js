@@ -1,19 +1,29 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
+import { BreadCrumbContext } from '../../commons/components/BreadCrumbs/context';
 import { List } from '../../commons/components/List';
 import { ProductMiniature } from '../../commons/components/ProductMiniature';
 import { useQuery } from '../../state/hooks';
 import { GET_PRODUCTS } from '../../state/product/rest/queries';
+import { getPath, ROUTES } from '../routes';
 
 const searchValues = ['model', 'brand'];
 
 export const Products = (props) => {
   const { t } = useTranslation();
+  const { setCrumbs } = React.useContext(BreadCrumbContext);
   const { data, loading, errors } = useQuery(GET_PRODUCTS);
   const [term, setTerm] = React.useState('');
 
   React.useEffect(() => {
-    console.log(data);
+    if (data?.products) {
+      setCrumbs([
+        {
+          path: getPath(ROUTES.PRODUCTS),
+          label: 'products'
+        }
+      ]);
+    }
   }, [data]);
 
   const handleOnChange = (e) => {
@@ -26,6 +36,10 @@ export const Products = (props) => {
 
   if (errors) {
     return <>Error</>;
+  }
+
+  if (loading) {
+    return <>Loading</>;
   }
 
   return (
