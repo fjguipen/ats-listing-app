@@ -8,6 +8,22 @@
     }
   },
   "actions":{
-    "search": "Find"
-  }
+    "search": "Find",
+    "goBack": "Go Back",
+    "addToCart": "Add to cart"
+  },
+  "details": "Details",
+  "products": "Products",
+  "brand": "Brand",
+  "model": "Model",
+  "cpu": "CPU",
+  "ram": "RAM",
+  "os": "Operating System",
+  "displaySize": "Screen size",
+  "dsplayResolution": "Display resolution",
+  "battery": "Battery",
+  "dimentions": "Dimmensions" ,
+  "primaryCamera": "Primary Camera",
+  "secondaryCmera": "Secondary Camera",
+  "weight": "Weight"
 }
