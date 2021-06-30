@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const calcSelectors = (page, perPage) => {
-  return [1 + perPage * (page - 1), perPage * page + 1];
+  return [perPage * (page - 1), perPage * page];
 };
 
 export const usePaginator = (initialPage, perPage, items, storeName) => {

@@ -12,10 +12,6 @@ export const List = ({ filter, items, keyName, children, pageSize }) => {
     ? usePaginator(1, pageSize, entries, 'product-list-page')
     : null;
 
-  React.useEffect(() => {
-    setEntries(items);
-  }, [items]);
-
   const triggerFilter = (term) => {
     const filterFunc = (item) => {
       const compareString = filter.searchValues.reduce((acumulator, value) => {
@@ -41,12 +37,15 @@ export const List = ({ filter, items, keyName, children, pageSize }) => {
     setFirstRender(false);
   }, [debouncedTerm]);
 
-  const paginate = (arr) => {
-    if (paginator?.selector) {
-      return arr.slice(paginator.selector[0], paginator.selector[1]);
-    }
-    return arr;
-  };
+  const paginate = React.useMemo(
+    () => (arr) => {
+      if (paginator?.selector) {
+        return arr.slice(paginator.selector[0], paginator.selector[1]);
+      }
+      return arr;
+    },
+    [paginator, entries]
+  );
 
   return (
     <>

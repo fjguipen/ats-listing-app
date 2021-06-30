@@ -172,7 +172,11 @@ const Select = ({ handleOnChange, options }) => {
       defaultValue={options[0].code}
     >
       {options.map((opt, i) => {
-        return <option value={opt.code}>{opt.name}</option>;
+        return (
+          <option key={opt.code} value={opt.code}>
+            {opt.name}
+          </option>
+        );
       })}
     </select>
   );
