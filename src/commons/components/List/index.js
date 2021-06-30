@@ -49,9 +49,13 @@ export const List = ({ filter, items, keyName, children, pageSize }) => {
 
   return (
     <>
-      <ul>
+      <ul data-testid="list">
         {paginate(entries).map((item) => (
-          <li key={item[keyName || 'id']} className="item">
+          <li
+            key={item[keyName || 'id']}
+            className="item"
+            data-testid="list-item"
+          >
             {React.Children.map(children, (child) =>
               React.cloneElement(child, { item })
             )}

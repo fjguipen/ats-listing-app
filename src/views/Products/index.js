@@ -35,11 +35,11 @@ export const Products = (props) => {
   };
 
   if (errors) {
-    return <>Error</>;
+    return <div data-testid="error">{t('error')}</div>;
   }
 
   if (loading) {
-    return <>Loading</>;
+    return <div data-testid="loading">{t('loading')}</div>;
   }
 
   return (

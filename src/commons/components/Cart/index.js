@@ -5,13 +5,8 @@ export const Cart = ({ className }) => {
   const { state } = React.useContext(CartContext);
 
   return (
-    <div className={'cart ' + (className || '')}>
-      <span
-        onClick={() => setShowResume((prev) => !prev)}
-        className="material-icons"
-      >
-        shopping_cart
-      </span>
+    <div data-testid="cart" className={'cart ' + (className || '')}>
+      <span className="material-icons">shopping_cart</span>
       {state.total}
     </div>
   );

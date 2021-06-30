@@ -25,5 +25,7 @@
   "dimentions": "Dimmensions" ,
   "primaryCamera": "Primary Camera",
   "secondaryCmera": "Secondary Camera",
-  "weight": "Weight"
+  "weight": "Weight",
+  "error": "Ops, there was an error",
+  "loading": "Loading..."
 }

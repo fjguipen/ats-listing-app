@@ -23,3 +23,16 @@ export const matches = (option, term) => {
 
   return !noMatch;
 };
+
+export const parsePath = (path, variables) => {
+  let parsed = path;
+  if (!variables) {
+    return parsed;
+  }
+  Object.keys(variables).forEach((key) => {
+    const regexp = new RegExp(`{{${key}}}`, 'g');
+    parsed = parsed.replace(regexp, variables[key]);
+  });
+
+  return parsed;
+};

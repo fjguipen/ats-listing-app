@@ -8,7 +8,8 @@ export const Button = ({
   handleOnClick,
   label,
   icon,
-  type
+  type,
+  dataTestid
 }) => {
   const { t } = useTranslation();
 
@@ -18,6 +19,7 @@ export const Button = ({
       type={type || 'button'}
       onClick={handleOnClick}
       disabled={disabled}
+      data-testid={dataTestid}
     >
       <span className="row">
         {icon && <i className="icon material-icons">{icon}</i>}

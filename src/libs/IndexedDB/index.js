@@ -11,9 +11,9 @@ class IndexedDBC {
   constructor() {
     if (!window.indexedDB) {
       this.status = 'unsopported';
-      return;
+    } else {
+      this._init(IndexedDBC.version);
     }
-    this._init(IndexedDBC.version);
   }
 
   _init(version) {

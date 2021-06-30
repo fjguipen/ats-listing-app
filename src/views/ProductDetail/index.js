@@ -31,7 +31,7 @@ export const ProductDetail = (props) => {
   const { setCrumbs } = React.useContext(BreadCrumbContext);
   const { deviceId } = useParams();
   const { dispatch } = React.useContext(CartContext);
-  const { data, errors } = useQuery(GET_PRODUCT, {
+  const { data, errors, loading } = useQuery(GET_PRODUCT, {
     variables: {
       id: deviceId
     }
@@ -40,7 +40,7 @@ export const ProductDetail = (props) => {
   const [color, setColor] = React.useState('');
   const [storage, setStorage] = React.useState('');
 
-  const [addToCart, { loading }] = useMutation(ADD_TO_CART);
+  const [addToCart, { loading: busy }] = useMutation(ADD_TO_CART);
 
   React.useEffect(() => {
     if (data?.product) {
@@ -58,6 +58,7 @@ export const ProductDetail = (props) => {
   }, [data]);
 
   const handleAddToCart = async () => {
+    console.log("CLICKEd")
     try {
       if (data?.product && color && storage) {
         const { product } = data;
@@ -83,14 +84,19 @@ export const ProductDetail = (props) => {
   };
 
   if (errors) {
-    return <>Error</>;
+    return <div data-testid="error">{t('error')}</div>;
   }
+
+  if (loading) {
+    return <div data-testid="loading">{t('loading')}</div>;
+  }
+
   const { product } = data;
 
   return (
     <>
       {data?.product && (
-        <div className="product-detail ">
+        <div className="product-detail " data-testid="product-detail">
           <Link to={getPath(ROUTES.PRODUCTS)} className="go-back row">
             <i className="material-icons">keyboard_arrow_left</i>
             {t('actions.goBack')}
@@ -142,9 +148,10 @@ export const ProductDetail = (props) => {
                   <Button
                     className="secondary"
                     handleOnClick={handleAddToCart}
-                    disabled={loading}
+                    disabled={busy}
                     icon={'shopping_bag'}
                     label={'actions.addToCart'}
+                    dataTestid={'add-to-cart'}
                   />
                 </div>
               </div>

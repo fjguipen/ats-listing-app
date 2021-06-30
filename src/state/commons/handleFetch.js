@@ -1,7 +1,5 @@
 import { IndexedDB, IDBStores } from '../../libs/IndexedDB';
 
-const API = 'https://front-test-api.herokuapp.com/api';
-
 export const cacheResponse = async (key, data, expiration) => {
   await IndexedDB.set(
     IDBStores.REQUESTS,
@@ -26,17 +24,16 @@ export const handleFetch = async (
     body: (variables && JSON.stringify(variables)) || undefined
   };
 
-  const endpointURL = API + path;
-  const cached = await IndexedDB.get(IDBStores.REQUESTS, endpointURL);
+  const cached = await IndexedDB.get(IDBStores.REQUESTS, path);
   if (cached) {
     return JSON.parse(cached.data);
   }
 
-  const response = await fetch(endpointURL, options);
+  const response = await fetch(path, options);
   if (response?.status === 200) {
     const data = await response.json();
     if (expiration) {
-      cacheResponse(endpointURL, JSON.stringify(data), expiration);
+      cacheResponse(path, JSON.stringify(data), expiration);
     }
     return data;
   } else {

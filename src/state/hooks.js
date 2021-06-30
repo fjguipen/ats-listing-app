@@ -1,18 +1,6 @@
 import * as React from 'react';
 import { useMachine } from '@xstate/react';
-
-const parsePath = (path, variables) => {
-  let parsed = path;
-  if (!variables) {
-    return parsed;
-  }
-  Object.keys(variables).forEach((key) => {
-    const regexp = new RegExp(`{{${key}}}`, 'g');
-    parsed = parsed.replace(regexp, variables[key]);
-  });
-
-  return parsed;
-};
+import { parsePath } from '../utils';
 
 export const useQuery = (query, { variables } = {}) => {
   const [state, send] = useMachine(query.machine);
