@@ -1,0 +1,31 @@
+{
+  "metas": {
+    "devices": {
+      "title": "Listado de productos"
+    },
+    "device": {
+      "title": "Detalle de producto"
+    }
+  },
+  "actions":{
+    "search": "Buscar",
+    "goBack": "Volter",
+    "addToCart": "Añadir al carrito"
+  },
+  "details": "Detalles",
+  "products": "Productos",
+  "brand": "Marca",
+  "model": "Modelo",
+  "cpu": "CPU",
+  "ram": "RAM",
+  "os": "Sistema operativo",
+  "displaySize": "Tamaño de pantalla",
+  "dsplayResolution": "Resolución de pantalla",
+  "battery": "Batería",
+  "dimentions": "Dimensiones" ,
+  "primaryCamera": "Cámara principal",
+  "secondaryCmera": "Cámara secundaria",
+  "weight": "Peso",
+  "error": "Ops, ha ocurrido un error inexperado",
+  "loading": "Cargando..."
+}

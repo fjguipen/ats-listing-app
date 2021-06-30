@@ -1,7 +1,7 @@
 import { createMachine, assign } from 'xstate';
 import { handleFetch } from './handleFetch';
 
-export const fetchMachine = createMachine(
+export const queryMachine = createMachine(
   {
     id: 'fetch',
     initial: 'idle',

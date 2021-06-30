@@ -21,7 +21,8 @@ module.exports = (env, argv) => ({
   entry: ['core-js/stable', 'regenerator-runtime/runtime', './src/index.js'],
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   devServer: {
     compress: true,

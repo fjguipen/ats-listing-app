@@ -58,7 +58,6 @@ export const ProductDetail = (props) => {
   }, [data]);
 
   const handleAddToCart = async () => {
-    console.log("CLICKEd")
     try {
       if (data?.product && color && storage) {
         const { product } = data;

@@ -7,13 +7,15 @@
     "test": "jest",
     "start": "webpack serve --mode development",
     "start:wsl": "webpack serve --host 0.0.0.0 --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "serve": "node server.js"
   },
   "author": "JaviGP",
   "license": "ISC",
   "dependencies": {
     "@xstate/react": "^1.4.0",
     "css-loader": "^5.2.6",
+    "express": "^4.17.1",
     "i18next": "^20.3.2",
     "i18next-browser-languagedetector": "^6.1.2",
     "i18next-http-backend": "^1.2.6",

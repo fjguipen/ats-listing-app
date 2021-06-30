@@ -1,13 +1,13 @@
-import { fetchMachine } from '../commons/fetchMachine';
+import { queryMachine } from '../commons/queryMachine';
 import { onSuccessProductFetch, onSuccessProductsFetch } from './actions';
 
-export const productsMachine = fetchMachine.withConfig({
+export const productsMachine = queryMachine.withConfig({
   actions: {
     onSuccessFetch: onSuccessProductsFetch
   }
 });
 
-export const productMachine = fetchMachine.withConfig({
+export const productMachine = queryMachine.withConfig({
   actions: {
     onSuccessFetch: onSuccessProductFetch
   }
